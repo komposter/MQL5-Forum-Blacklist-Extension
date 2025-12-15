@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQL5 Forum Blacklist - Options</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="options-container">
+        <header class="options-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="extension-icon">🚫</div>
+                    <div class="title-section">
+                        <h1 class="extension-title">MQL5 Forum Blacklist</h1>
+                        <p class="extension-version">Version 1.0.0</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="resetAllBtn" class="danger-button">Reset All</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="options-main">
+            <!-- Settings Section -->
+            <section class="options-section">
+                <h2 class="section-title">Settings</h2>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="hideCompletely" class="setting-checkbox">
+                            <span class="checkmark"></span>
+                            Hide posts completely (remove from DOM)
+                        </label>
+                        <p class="setting-description">When disabled, posts will be faded out instead of hidden</p>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="showIndicator" class="setting-checkbox">
+                            <span class="checkmark"></span>
+                            Show indicators for hidden posts
+                        </label>
+                        <p class="setting-description">Display a subtle indicator where posts were hidden</p>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="statisticsEnabled" class="setting-checkbox">
+                            <span class="checkmark"></span>
+                            Enable statistics tracking
+                        </label>
+                        <p class="setting-description">Track number of hidden posts and users</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blacklist Management Section -->
+            <section class="options-section">
+                <div class="section-header">
+                    <h2 class="section-title">Blacklist Management</h2>
+                    <div class="section-actions">
+                        <span id="blacklistCount" class="count-badge">0 users</span>
+                    </div>
+                </div>
+                
+                <div class="blacklist-controls">
+                    <div class="search-box">
+                        <input type="text" id="searchBlacklist" placeholder="Search blacklist..." class="search-input">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="bulk-actions">
+                        <button id="exportBtn" class="secondary-button">Export</button>
+                        <button id="importBtn" class="secondary-button">Import</button>
+                        <button id="clearAllBtn" class="danger-button">Clear All</button>
+                    </div>
+                </div>
+
+                <div class="blacklist-container">
+                    <div id="blacklistItems" class="blacklist-items">
+                        <div class="empty-state">
+                            <div class="empty-icon">📋</div>
+                            <h3 class="empty-title">No users in blacklist</h3>
+                            <p class="empty-description">Add users from the popup or import a list</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="options-section">
+                <h2 class="section-title">Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalHidden">0</div>
+                        <div class="stat-label">Total Hidden Posts</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalUsers">0</div>
+                        <div class="stat-label">Blacklisted Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="extensionEnabled">Yes</div>
+                        <div class="stat-label">Extension Status</div>
+                    </div>
+                </div>
+                <div class="stat-actions">
+                    <button id="resetStatsBtn" class="secondary-button">Reset Statistics</button>
+                </div>
+            </section>
+
+            <!-- Import/Export Section -->
+            <section class="options-section">
+                <h2 class="section-title">Import/Export</h2>
+                <div class="import-export-info">
+                    <p class="info-text">Export your blacklist to backup or share with others. Import from JSON files.</p>
+                    <div class="file-format-info">
+                        <h4>File Format:</h4>
+                        <pre class="format-example">{
+  "blacklist": [
+    {"username": "user1", "addedAt": 1234567890},
+    {"username": "user2", "addedAt": 1234567890}
+  ]
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="options-section">
+                <h2 class="section-title">About</h2>
+                <div class="about-content">
+                    <div class="about-item">
+                        <strong>Extension:</strong> MQL5 Forum User Blacklist
+                    </div>
+                    <div class="about-item">
+                        <strong>Version:</strong> 1.0.0
+                    </div>
+                    <div class="about-item">
+                        <strong>Permissions:</strong> Storage, Active Tab
+                    </div>
+                    <div class="about-item">
+                        <strong>Works on:</strong> www.mql5.com/forum*
+                    </div>
+                    <div class="about-item">
+                        <strong>Data Storage:</strong> Local browser storage only
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="options-footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" id="helpLink" class="footer-link">Help</a>
+                    <a href="#" id="privacyLink" class="footer-link">Privacy</a>
+                    <a href="#" id="feedbackLink" class="footer-link">Feedback</a>
+                </div>
+                <div class="footer-actions">
+                    <button id="saveBtn" class="primary-button">Save Settings</button>
+                    <button id="cancelBtn" class="secondary-button">Cancel</button>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+    <script src="options.js"></script>
+</body>
+</html>

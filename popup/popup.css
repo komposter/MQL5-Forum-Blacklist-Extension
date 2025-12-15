@@ -1,0 +1,346 @@
+/**
+ * MQL5 Forum Blacklist - Popup Styles
+ * Material Design inspired UI
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #202124;
+  background: #ffffff;
+  width: 350px;
+  min-height: 400px;
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 600px;
+}
+
+/* Header */
+.popup-header {
+  background: #1a73e8;
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.popup-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: #1a73e8;
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+  transform: translateX(20px);
+}
+
+.toggle-label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Main Content */
+.popup-main {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #5f6368;
+}
+
+/* Add User Section */
+.add-user-section {
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.username-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.username-input:focus {
+  border-color: #1a73e8;
+}
+
+.add-button {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  min-width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-button:hover {
+  background: #1557b0;
+}
+
+.add-button:active {
+  background: #0d47a1;
+}
+
+/* Blacklist Section */
+.blacklist-section {
+  margin-bottom: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.count-badge {
+  background: #e8f0fe;
+  color: #1a73e8;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.blacklist-container {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  background: #f8f9fa;
+}
+
+.empty-state {
+  padding: 24px 16px;
+  text-align: center;
+  color: #5f6368;
+}
+
+.empty-text {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.empty-subtext {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.blacklist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e8eaed;
+  background: white;
+}
+
+.blacklist-item:last-child {
+  border-bottom: none;
+}
+
+.blacklist-item:hover {
+  background: #f8f9fa;
+}
+
+.username-text {
+  font-size: 14px;
+  color: #202124;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.remove-button {
+  background: #ea4335;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.remove-button:hover {
+  background: #d33b2c;
+}
+
+/* Statistics Section */
+.statistics-section {
+  background: #f8f9fa;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.stat-item:last-child {
+  margin-bottom: 0;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #5f6368;
+}
+
+.stat-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a73e8;
+}
+
+/* Footer */
+.popup-footer {
+  border-top: 1px solid #e8eaed;
+  padding: 12px 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.options-button,
+.refresh-button {
+  background: white;
+  color: #1a73e8;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+.options-button:hover,
+.refresh-button:hover {
+  background: #f8f9fa;
+  border-color: #1a73e8;
+}
+
+.button-icon {
+  font-size: 14px;
+}
+
+/* Scrollbar Styling */
+.blacklist-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.blacklist-container::-webkit-scrollbar-track {
+  background: #f1f3f4;
+  border-radius: 3px;
+}
+
+.blacklist-container::-webkit-scrollbar-thumb {
+  background: #dadce0;
+  border-radius: 3px;
+}
+
+.blacklist-container::-webkit-scrollbar-thumb:hover {
+  background: #5f6368;
+}
+
+/* Responsive adjustments */
+@media (max-height: 500px) {
+  .popup-main {
+    max-height: 300px;
+  }
+  
+  .blacklist-container {
+    max-height: 100px;
+  }
+}

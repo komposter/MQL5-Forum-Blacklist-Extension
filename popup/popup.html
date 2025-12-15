@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQL5 Forum Blacklist</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="popup-container">
+        <header class="popup-header">
+            <h1 class="popup-title">MQL5 Forum Blacklist</h1>
+            <div class="toggle-container">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="extensionToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Enabled</span>
+            </div>
+        </header>
+
+        <main class="popup-main">
+            <section class="add-user-section">
+                <h2 class="section-title">Add User to Blacklist</h2>
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="usernameInput" 
+                        placeholder="Enter username..."
+                        class="username-input"
+                        maxlength="100"
+                    >
+                    <button id="addUserBtn" class="add-button" title="Add user to blacklist">
+                        <span class="button-icon">+</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="blacklist-section">
+                <div class="section-header">
+                    <h2 class="section-title">Blacklisted Users</h2>
+                    <span id="blacklistCount" class="count-badge">0</span>
+                </div>
+                <div id="blacklistContainer" class="blacklist-container">
+                    <div class="empty-state">
+                        <p class="empty-text">No users in blacklist</p>
+                        <p class="empty-subtext">Add users above to hide their posts</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="statistics-section">
+                <div class="stat-item">
+                    <span class="stat-label">Hidden Posts:</span>
+                    <span id="hiddenCount" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Blacklisted:</span>
+                    <span id="totalBlacklisted" class="stat-value">0</span>
+                </div>
+            </section>
+        </main>
+
+        <footer class="popup-footer">
+            <button id="openOptionsBtn" class="options-button" title="Open options page">
+                <span class="button-icon">⚙</span>
+                Options
+            </button>
+            <button id="refreshBtn" class="refresh-button" title="Refresh current page">
+                <span class="button-icon">↻</span>
+                Refresh
+            </button>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

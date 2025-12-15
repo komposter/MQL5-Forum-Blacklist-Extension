@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "MQL5 Forum User Blacklist",
+  "version": "1.0.0",
+  "description": "Hide posts from specified users on MQL5 forum",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://www.mql5.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://www.mql5.com/*/forum*"],
+      "js": ["content/content-script.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "MQL5 Forum Blacklist"
+  },
+  "options_page": "options/options.html",
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  }
+}
