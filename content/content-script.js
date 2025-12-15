@@ -83,7 +83,8 @@ class MQL5ForumBlacklist {
       '.message-item',
       '.post-item',
       '[data-message-id]',
-      '.user-message'
+      '.user-message',
+      '.comment-box'
     ];
 
     postSelectors.forEach(selector => {
@@ -112,7 +113,8 @@ class MQL5ForumBlacklist {
       '.message-item',
       '.post-item',
       '[data-message-id]',
-      '.user-message'
+      '.user-message',
+      '.comment-box'
     ];
 
     postSelectors.forEach(selector => {
@@ -136,41 +138,24 @@ class MQL5ForumBlacklist {
   }
 
   extractAuthor(postElement) {
-    // Try multiple strategies to find author name
-    const authorSelectors = [
-      '.forum-user-name',
-      '.user-name',
-      '.author-name',
-      '.message-author',
-      '.post-author',
-      '[data-user-name]',
-      '.username',
-      'a[href*="/users/"]'
-    ];
+    const nameEl = postElement.querySelector('a.author, .author-name, .forum-user-name, .user-name, .message-author, .post-author, .username');
+    const name = nameEl ? (nameEl.textContent || nameEl.title || '').trim() : '';
 
-    for (const selector of authorSelectors) {
-      const authorElement = postElement.querySelector(selector);
-      if (authorElement) {
-        const authorName = authorElement.textContent?.trim() || 
-                          authorElement.getAttribute('data-user-name') || 
-                          authorElement.title?.trim();
-        if (authorName) {
-          return authorName;
-        }
-      }
+    let login = '';
+    const avatarImg = postElement.querySelector('img[data-user-login]');
+    if (avatarImg) {
+      login = avatarImg.getAttribute('data-user-login')?.trim() || '';
+    }
+    let slug = '';
+    const hrefEl = postElement.querySelector('a[href*="/users/"]') || nameEl;
+    const href = hrefEl ? (hrefEl.getAttribute('href') || '').trim() : '';
+    if (href) {
+      const m = href.match(/\/users\/([^\/]+)/);
+      if (m && m[1]) slug = decodeURIComponent(m[1]);
     }
 
-    // Fallback: look for profile links
-    const profileLinks = postElement.querySelectorAll('a[href*="/users/"]');
-    for (const link of profileLinks) {
-      const href = link.getAttribute('href');
-      const match = href?.match(/\/users\/(\d+)-([^\/]+)/);
-      if (match && match[2]) {
-        return decodeURIComponent(match[2]);
-      }
-    }
-
-    return null;
+    if (!name && !login && !href && !slug) return null;
+    return { name, login, href, slug };
   }
 
   findAuthorElement(postElement) {
@@ -194,9 +179,16 @@ class MQL5ForumBlacklist {
 
   processPost(post) {
     if (!post.author) return;
-
-    const isBlacklisted = this.blacklist.includes(post.author.toLowerCase());
-    
+    const identifiers = [];
+    if (typeof post.author === 'string') {
+      identifiers.push(post.author.toLowerCase());
+    } else {
+      if (post.author.name) identifiers.push(post.author.name.toLowerCase());
+      if (post.author.login) identifiers.push(post.author.login.toLowerCase());
+      if (post.author.slug) identifiers.push(post.author.slug.toLowerCase());
+      if (post.author.href) identifiers.push(post.author.href.toLowerCase());
+    }
+    const isBlacklisted = identifiers.some(id => this.blacklist.includes(id));
     if (isBlacklisted) {
       this.hidePost(post);
     } else {

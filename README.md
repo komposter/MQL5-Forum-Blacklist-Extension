@@ -39,9 +39,16 @@ A Chrome browser extension that allows you to blacklist users on the MQL5 forum,
 
 #### Quick Add (Popup)
 1. Click the extension icon in the toolbar
-2. Enter the username you want to blacklist
+2. Enter the user login (nickname) to blacklist
 3. Click "Add to Blacklist"
 4. Refresh the forum page to see changes
+
+Important:
+- Preferred input is the user login (nickname) — the entire slug after `/users/` in the profile URL.
+- Examples:
+  - `https://www.mql5.com/en/users/trader_omega` → login: `trader_omega`
+  - `https://www.mql5.com/ru/users/98765-trader_omega` → login: `98765-trader_omega`
+- Full display name and full profile URL are also supported, but login (full slug) is the most reliable option.
 
 #### From Forum Page
 1. Navigate to any MQL5 forum page
@@ -132,7 +139,7 @@ A Chrome browser extension that allows you to blacklist users on the MQL5 forum,
 5. **Restart Browser**: Close and reopen Chrome
 
 ### Users Not Being Hidden
-1. **Verify Username**: Ensure correct username spelling
+1. **Verify Login**: Ensure correct user login (nickname) spelling (e.g. `98765-trader_omega` or `trader_omega`)
 2. **Check Page Type**: Extension only works on forum pages
 3. **Update Extension**: Check for extension updates
 4. **Reset Settings**: Try resetting extension to defaults
